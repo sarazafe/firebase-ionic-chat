@@ -11,6 +11,7 @@ import { RoomProvider } from '../providers/room/room';
 import { UserProvider } from '../providers/user/user';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ChatPageModule } from '../pages/chat/chat.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
   imports: [
     BrowserModule,
     ChatPageModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
