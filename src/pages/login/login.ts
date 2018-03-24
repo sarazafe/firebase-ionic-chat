@@ -47,7 +47,7 @@ export class LoginPage {
 				user.uid = value.uid;
 				// remove password, for not storing without encrypting
 				user.password = '';
-				this.userProvider.saveUser(user).then(res => {
+				this.userProvider.saveUser(user).then(() => {
 					this.navCtrl.push(ChatPage, {
 						username: value.email
 					});
