@@ -2,6 +2,7 @@
  * User of the chat
  */
 export class User {
+    uid: string;
     email: string;
     password: string;
 

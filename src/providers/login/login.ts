@@ -20,7 +20,7 @@ export class LoginProvider {
 	 * Sign up the user
 	 * @param user the user
 	 */
-	signUp(user: User){
+	signUp(user: User): Promise<any>{
 		return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
 	}
 

@@ -2,5 +2,5 @@
  * Endpoints
  */
 export const Endpoints = {
-    LOGIN: 'users/'
+    USERS: 'users/',
 }

@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
 import { User } from '../../model/user';
+import { UserProvider } from '../../providers/user/user';
+
+import { ChatPage } from './../chat/chat';
 
 /**
  * Login page
@@ -20,7 +23,8 @@ export class LoginPage {
 
 	constructor(public navCtrl: NavController,
 		private formBuilder: FormBuilder,
-		private loginProvider: LoginProvider) {
+		private loginProvider: LoginProvider,
+		private userProvider: UserProvider) {
 		this.loginForm = this.formBuilder.group({
 			mail: ['', Validators.required],
 			password: ['', Validators.required]
@@ -37,8 +41,17 @@ export class LoginPage {
 	signUp() {
 		let username: string = this.loginForm.value['mail'];
 		let password: string = this.loginForm.value['password'];
+		let user: User = new User(username, password);
 		this.loginProvider.signUp(new User(username, password))
 			.then(value => {
+				user.uid = value.uid;
+				// remove password, for not storing without encrypting
+				user.password = '';
+				this.userProvider.saveUser(user).then(res => {
+					this.navCtrl.push(ChatPage, {
+						username: value.email
+					});
+				});
 			})
 			.catch(function (error) {
 				console.log("Signup error", error);
@@ -51,10 +64,13 @@ export class LoginPage {
 	doLogin() {
 		let username: string = this.loginForm.value['mail'];
 		let password: string = this.loginForm.value['password'];
-		this.loginProvider.login(new User(username, password))
+		let user: User = new User(username, password);
+		this.loginProvider.login(user)
 			.then(value => {
-			})
-			.catch(function (error) {
+				this.navCtrl.push(ChatPage, {
+					username: value.email
+				});
+			}).catch(function (error) {
 				console.log("Login error", error);
 			});
 	}
