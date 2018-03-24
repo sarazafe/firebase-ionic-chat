@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 
 import * as firebase from 'firebase';
+import { FirebaseConfig } from '../constants/firebase-config';
 
 @Component({
 	templateUrl: 'app.html'
@@ -13,13 +14,6 @@ import * as firebase from 'firebase';
 export class MyApp {
 	rootPage: any = HomePage;
 
-	config = {
-		apiKey: 'AAAAgrL4-mo:APA91bEkuFuBkdFtsF-FGkebkiaL29lg_bhr4zrL40xX0J-a1iQL2XAlVZtEN7nGGWlU5-hB-CCQCRYgYu3xmM9cPr6eQ3OuhRAr6L3juxzo4Ba14yzkjpoBTUfeTyo2GHzl1uDkMlsq',
-		authDomain: 'chat-59245.firebaseapp.com',
-		databaseURL: 'https://chat-59245.firebaseio.com/',
-		projectId: 'chat-59245',
-		storageBucket: '',
-	};
 
 	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 		platform.ready().then(() => {
@@ -30,6 +24,7 @@ export class MyApp {
 		});
 
 		// Initialize firebase
+		firebase.initializeApp(FirebaseConfig);
 		firebase.initializeApp(this.config);
 	}
 }
