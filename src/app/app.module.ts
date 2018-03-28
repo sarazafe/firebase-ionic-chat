@@ -12,6 +12,7 @@ import { UserProvider } from '../providers/user/user';
 import { LoginPageModule } from '../pages/login/login.module';
 import { ChatPageModule } from '../pages/chat/chat.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MemberProvider } from '../providers/member/member';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     LoginProvider,
     RoomProvider,
-    UserProvider
+    UserProvider,
+    MemberProvider
   ]
 })
 export class AppModule { }

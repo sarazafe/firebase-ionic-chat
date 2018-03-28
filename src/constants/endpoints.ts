@@ -3,5 +3,6 @@
  */
 export const Endpoints = {
     USERS: 'users/',
-    ROOMS: 'rooms/'
+    ROOMS: 'rooms/',
+    MEMBERS: 'members/'
 }
