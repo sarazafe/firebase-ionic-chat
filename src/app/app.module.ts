@@ -13,6 +13,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { ChatPageModule } from '../pages/chat/chat.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MemberProvider } from '../providers/member/member';
+import { MessageProvider } from '../providers/message/message';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MemberProvider } from '../providers/member/member';
     LoginProvider,
     RoomProvider,
     UserProvider,
-    MemberProvider
+    MemberProvider,
+    MessageProvider
   ]
 })
 export class AppModule { }

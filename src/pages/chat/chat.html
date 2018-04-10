@@ -3,9 +3,28 @@
     <ion-title>Chat</ion-title>
   </ion-navbar>
   <div class="members-container">
-      {{getMembersDescription()}}
+    {{getMembersDescription()}}
   </div>
 </ion-header>
 
 <ion-content padding>
+  <div class="chat-wrapper">
+    <div class="chat-content">
+      <div class="chat-bubble"  *ngFor="let message of messages;">
+        <div class="sender">{{message.sender}}</div>
+        <div class="message" >{{message.message}}</div>
+        <ion-icon class="sent-message" name="done-all">
+        </ion-icon>
+      </div>
+    </div>
+  </div>
 </ion-content>
+
+<ion-footer class="chat-page-footer" no-border>
+  <div class="chat-text-input">
+    <ion-textarea [(ngModel)]="message" placeholder="Escribe un mensaje"></ion-textarea>
+    <div class="message-button" (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </div>
+  </div>
+</ion-footer>
