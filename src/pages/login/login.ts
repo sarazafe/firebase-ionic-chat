@@ -49,7 +49,7 @@ export class LoginPage {
 				user.password = '';
 				this.userProvider.saveUser(user).then(() => {
 					this.navCtrl.push(ChatPage, {
-						username: value.email
+						user: user
 					});
 				});
 			})
@@ -67,8 +67,9 @@ export class LoginPage {
 		let user: User = new User(username, password);
 		this.loginProvider.login(user)
 			.then(value => {
+			  user.uid = value.uid;
 				this.navCtrl.push(ChatPage, {
-					username: value.email
+          user: user
 				});
 			}).catch(function (error) {
 				console.log("Login error", error);

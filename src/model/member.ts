@@ -1,14 +1,18 @@
-import { Message } from "./message";
+import {Message} from "./message";
 
 /**
  * Member of a room
  */
 export class Member {
-    username: string;
-    roomId: string;
+  uid: string;
+  email: string;
+  roomId: string;
 
-    constructor(username: string, roomId: string) {
-        this.username = username;
-        this.roomId = roomId;
-    }
+  /**
+   * It initializes the object from json
+   * @param {string} memberJson
+   */
+  constructor(memberJson: any) {
+    Object.assign(this, memberJson);
+  }
 }
