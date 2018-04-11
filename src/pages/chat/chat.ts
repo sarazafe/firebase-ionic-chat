@@ -1,13 +1,13 @@
-import {Component, Input} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {RoomProvider} from '../../providers/room/room';
 import {MemberProvider} from '../../providers/member/member';
 import {Member} from '../../model/member';
 import {Chat} from '../../constants/chat';
-import {Endpoints} from "../../constants/endpoints";
 import {User} from "../../model/user";
 import {Message} from "../../model/message";
 import {MessageProvider} from "../../providers/message/message";
+import {Content} from 'ionic-angular';
 
 /**
  * Chat page
@@ -20,13 +20,16 @@ import {MessageProvider} from "../../providers/message/message";
 })
 export class ChatPage {
 
+  @ViewChild(Content)
+  content: Content;
+
   user: User;
   members: Member[];
   message: string;
   member: Member;
   messages: Message[];
 
-  constructor(public navCtrl: NavController,
+  constructor(public viewCtrl: ViewController,
               public navParams: NavParams,
               private roomProvider: RoomProvider,
               private memberProvider: MemberProvider,
@@ -35,34 +38,37 @@ export class ChatPage {
     this.members = [];
     this.message = '';
     this.messages = [];
-
-    // When the list of members grows up, add to the list of members
-    this.memberProvider.getMemberReference().on('child_added', (val) => {
-      this.members.push(new Member(val.val()));
-    });
-
-    // When a message has been sent, add to the list of messages
-    this.messageProvider.getMessageReference().on('child_added', (val) => {
-      this.messages.push(new Message(val.val()));
-    });
   }
 
   ionViewDidLoad() {
     // Init the room
-    this.roomProvider.initRoom().then(() => {
-      // Add user to the room
-      this.member = new Member({
-        uid: this.user.uid,
-        email: this.user.email,
-        roomId: Chat.DEFAULT_ROOM_ID
-      });
-      this.memberProvider.addMember(this.member)
-        .then().catch(function (error) {
-        console.log("Error adding member", error);
-      });
-    }).catch(function (error) {
-      console.log("Init room error", error);
+    this.initRoom();
+
+    // When the list of members grows up, add to the list of members
+    this.onNewMember();
+
+    // When a message has been sent, add to the list of messages
+    this.onNewMessage();
+
+    // Scroll to bottom when an element is inserted in the DOM
+    let chatContent = document.getElementsByClassName('chat-content')[0];
+    if (!chatContent) {
+      return;
+    }
+    chatContent.addEventListener("DOMNodeInserted", () => {
+        this.scrollToBottom();
     });
+  }
+
+  /**
+   * It scrolls the content to bottom
+   */
+  scrollToBottom() {
+    this.content.scrollToBottom(100);
+  }
+
+  close() {
+    this.viewCtrl.dismiss();
   }
 
   /**
@@ -94,8 +100,61 @@ export class ChatPage {
 
     // Save message
     this.messageProvider.saveMessage(message)
-      .then().catch(function (error) {
+      .then(()=> {
+        // Clean sent message
+        this.message = '';
+      }).catch(function (error) {
       console.log("Error saving message", error);
+    });
+  }
+
+  /**
+   * It initializes the room and add the user to it
+   */
+  private initRoom() {
+    this.roomProvider.initRoom().then(() => {
+      // Add user to the room it he/she has not been added
+      if (!this.member) {
+        this.member = new Member({
+          uid: this.user.uid,
+          email: this.user.email,
+          roomId: Chat.DEFAULT_ROOM_ID
+        });
+        this.memberProvider.addMember(this.member)
+          .then().catch(function (error) {
+          console.log("Error adding member", error);
+        });
+      }
+    }).catch(function (error) {
+      console.log("Init room error", error);
+    });
+  }
+
+  /**
+   * It receives new member added to the room
+   */
+  private onNewMember() {
+    this.memberProvider.getMemberReference().on('child_added', (val) => {
+      let member: Member = new Member(val.val());
+      if (this.user.email === member.email) {
+        this.member = member;
+      }
+      this.members.push(new Member(val.val()));
+    });
+  }
+
+  /**
+   *  It receives new message and add to the list of messages
+   */
+  private onNewMessage() {
+    this.messageProvider.getMessageReference().on('child_added', (val) => {
+      let message: Message = new Message(val.val());
+      if (this.member.email === message.sender) {
+        message.position = 'right';
+      } else {
+        message.position = 'left';
+      }
+      this.messages.push(message);
     });
   }
 

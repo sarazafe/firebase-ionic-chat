@@ -1,3 +1,101 @@
 page-chat {
+  font-family: Poppins;
 
+  ion-header {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    height: 65px;
+    background-color: #FFFFFF;
+
+    .members-container {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  ion-content {
+    background-image: url('../../assets/imgs/background.jpg');
+    .chat-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .chat-content {
+        margin-top: 2%;
+        display: flex;
+        flex-direction: column;
+
+        .chat-bubble {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+
+          &.right {
+            justify-content: flex-end;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+          }
+
+          &.left {
+            justify-content: flex-start;
+            margin-top: 1px;
+            margin-left: 10px;
+          }
+
+          .message-container {
+            border-radius: 20px;
+            display: inline-block;
+            max-width: 85%;
+            font-size: medium;
+            word-wrap: break-word;
+            white-space: normal;
+            padding: 10px 18px;
+            font-size: 14px;
+
+            &.left {
+              background-color: $main-color;
+              color: #FFFFFF;
+            }
+            &.right {
+              background-color: #eef0f1;
+              color: #354052;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  ion-footer {
+    .chat-text-input {
+      font-family: Poppins;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      background-color: #FFFFFF;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+
+      .message-button {
+        border-radius: 32px;
+        background-color: $main-color;
+        -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+        height: 46px;
+        width: 46px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FCFCFC;
+        margin: 7px;
+      }
+    }
+  }
 }

@@ -6,7 +6,7 @@ export class Message {
     roomId: number;
     message: string;
     time: Date;
-
+    position: string;
     constructor(messageJson: any){
       Object.assign(this, messageJson);
     }

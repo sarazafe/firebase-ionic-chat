@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Chat</ion-title>
-  </ion-navbar>
+  <div class="close-button">
+    <ion-icon name="close" (click)="close()"></ion-icon>
+  </div>
   <div class="members-container">
     {{getMembersDescription()}}
   </div>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <div class="chat-wrapper">
     <div class="chat-content">
-      <div class="chat-bubble"  *ngFor="let message of messages;">
-        <div class="sender">{{message.sender}}</div>
-        <div class="message" >{{message.message}}</div>
-        <ion-icon class="sent-message" name="done-all">
-        </ion-icon>
+      <div class="chat-bubble" *ngFor="let message of messages;" [ngClass]="message.position">
+        <div class="message-container" [ngClass]="message.position">
+          <div class="sender">{{message.sender}}</div>
+          <div class="message">{{message.message}}</div>
+        </div>
       </div>
     </div>
   </div>
