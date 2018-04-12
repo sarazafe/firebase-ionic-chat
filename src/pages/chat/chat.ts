@@ -64,7 +64,8 @@ export class ChatPage {
    * It scrolls the content to bottom
    */
   scrollToBottom() {
-    this.content.scrollToBottom(100);
+    setTimeout(()=>this.content.scrollToBottom(300), 500);
+
   }
 
   close() {
