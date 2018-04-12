@@ -1,9 +1,14 @@
 <ion-header>
-  <div class="close-button">
-    <ion-icon name="close" (click)="close()"></ion-icon>
-  </div>
-  <div class="members-container">
-    {{getMembersDescription()}}
+  <div class="header-container">
+    <div class="close-button">
+      <ion-icon name="arrow-round-back" (click)="close()"></ion-icon>
+    </div>
+    <div class="chat-logo">
+      <img src="assets/imgs/chat.png"/>
+    </div>
+    <div class="members-container">
+      {{getMembersDescription()}}
+    </div>
   </div>
 </ion-header>
 

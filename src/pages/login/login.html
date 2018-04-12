@@ -1,11 +1,9 @@
-<ion-content>
-
+<div class="main-container">
 	<div class="header">
     <img src="assets/imgs/chat.png"/>
 		<h1>Iniciar sesión</h1>
 		<h2>Introduce tus credenciales</h2>
 	</div>
-
 	<form class="form" [formGroup]="loginForm">
 		<ion-item>
 			<ion-label>
@@ -28,7 +26,5 @@
 			<button (click)="doLogin(loginForm)" [ngClass]="{'disabled': loginForm.invalid}" class="formButton login" type="button">Login</button>
 			<button (click)="signUp(loginForm)" [ngClass]="{'disabled': loginForm.invalid}" class="formButton register" type="button">Darse de alta</button>
 		</div>
-
 	</form>
-
-</ion-content>
+</div>

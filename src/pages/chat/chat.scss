@@ -3,16 +3,34 @@ page-chat {
 
   ion-header {
     overflow: hidden;
-    display: flex;
-    flex-direction: row;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     height: 65px;
     background-color: #FFFFFF;
 
-    .members-container {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
+    .header-container {
+      display: flex;
+      margin: 3px auto;
+
+      .close-button {
+        width: 30%;
+        font-size: 20px;
+        ion-icon {
+          font-size: 1.2em;
+          margin-left: 5px;
+          margin-top: 15px;
+        }
+      }
+
+      .chat-logo {
+        margin: auto 5px;
+      }
+
+      .members-container {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        font-size: 14px;
+      }
     }
   }
 
@@ -61,7 +79,7 @@ page-chat {
               color: #FFFFFF;
             }
             &.right {
-              background-color: #eef0f1;
+              background-color: #c3dce8;
               color: #354052;
             }
           }
