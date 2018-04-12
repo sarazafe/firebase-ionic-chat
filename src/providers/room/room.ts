@@ -22,7 +22,8 @@ export class RoomProvider {
 	 * It initializes the room. It saves the room in database
 	 */
 	initRoom() {
-		return this.database.ref(Endpoints.ROOMS + Chat.DEFAULT_ROOM_ID).set(new Room(Chat.DEFAULT_ROOM_ID, Chat.DEFAULT_ROOM_NAME));
+	  // TODO: Init room
+		// return this.database.ref(Endpoints.ROOMS + Chat.DEFAULT_ROOM_ID).set(new Room(Chat.DEFAULT_ROOM_ID, Chat.DEFAULT_ROOM_NAME));
 	}
 
 }

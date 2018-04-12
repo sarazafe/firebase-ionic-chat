@@ -21,7 +21,9 @@ export class LoginProvider {
 	 * @param user the user
 	 */
 	signUp(user: User): Promise<any>{
-		return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+	  //TODO: Singup
+		// return firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
+    return null;
 	}
 
 	/**
@@ -29,7 +31,9 @@ export class LoginProvider {
 	 * @param user the user
 	 */
 	login(user: User): Promise<any> {
-		return this.auth.signInWithEmailAndPassword(user.email, user.password);
+	  // TODO: Login
+		// return this.auth.signInWithEmailAndPassword(user.email, user.password);
+    return null;
 	}
 
 }

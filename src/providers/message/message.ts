@@ -24,7 +24,9 @@ export class MessageProvider {
    * @returns {Promise<any>}
    */
   saveMessage(message: Message): Promise<any> {
-    return this.getMessageReference().push().set(message);
+    //TODO: Save message
+    // return this.getMessageReference().push().set(message);
+    return null;
   }
 
   /**

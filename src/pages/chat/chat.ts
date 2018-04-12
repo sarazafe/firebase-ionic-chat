@@ -99,64 +99,67 @@ export class ChatPage {
       time: new Date()
     });
 
-    // Save message
-    this.messageProvider.saveMessage(message)
-      .then(()=> {
-        // Clean sent message
-        this.message = '';
-      }).catch(function (error) {
-      console.log("Error saving message", error);
-    });
+    // TODO: Save message
+    // this.messageProvider.saveMessage(message)
+    //   .then(()=> {
+    //     // Clean sent message
+    //     this.message = '';
+    //   }).catch(function (error) {
+    //   console.log("Error saving message", error);
+    // });
   }
 
   /**
    * It initializes the room and add the user to it
    */
   private initRoom() {
-    this.roomProvider.initRoom().then(() => {
-      // Add user to the room it he/she has not been added
-      if (!this.member) {
-        this.member = new Member({
-          uid: this.user.uid,
-          email: this.user.email,
-          roomId: Chat.DEFAULT_ROOM_ID
-        });
-        this.memberProvider.addMember(this.member)
-          .then().catch(function (error) {
-          console.log("Error adding member", error);
-        });
-      }
-    }).catch(function (error) {
-      console.log("Init room error", error);
-    });
+    // TODO: init room
+    // this.roomProvider.initRoom().then(() => {
+    //   // Add user to the room it he/she has not been added
+    //   if (!this.member) {
+    //     this.member = new Member({
+    //       uid: this.user.uid,
+    //       email: this.user.email,
+    //       roomId: Chat.DEFAULT_ROOM_ID
+    //     });
+    //     this.memberProvider.addMember(this.member)
+    //       .then().catch(function (error) {
+    //       console.log("Error adding member", error);
+    //     });
+    //   }
+    // }).catch(function (error) {
+    //   console.log("Init room error", error);
+    // });
   }
 
   /**
    * It receives new member added to the room
    */
   private onNewMember() {
-    this.memberProvider.getMemberReference().on('child_added', (val) => {
-      let member: Member = new Member(val.val());
-      if (this.user.email === member.email) {
-        this.member = member;
-      }
-      this.members.push(new Member(val.val()));
-    });
+    // TODO: On new member, add to the list of members
+    // this.memberProvider.getMemberReference().on('child_added', (val) => {
+    //   let member: Member = new Member(val.val());
+    //   if (this.user.email === member.email) {
+    //     this.member = member;
+    //   }
+    //   this.members.push(new Member(val.val()));
+    // });
   }
 
   /**
    *  It receives new message and add to the list of messages
    */
   private onNewMessage() {
-    this.messageProvider.getMessageReference().on('child_added', (val) => {
-      let message: Message = new Message(val.val());
-      if (this.member.email === message.sender) {
-        message.position = 'right';
-      } else {
-        message.position = 'left';
-      }
-      this.messages.push(message);
-    });
+    // TODO: On new message, add to the list of messages
+    // this.messageProvider.getMessageReference().on('child_added', (val) => {
+    //   let message: Message = new Message(val.val());
+    //   if (this.member.email === message.sender) {
+    //     message.position = 'right';
+    //   } else {
+    //     message.position = 'left';
+    //   }
+    //   this.messages.push(message);
+    // });
   }
 
 }

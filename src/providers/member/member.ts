@@ -23,7 +23,9 @@ export class MemberProvider {
    * @param member the member
    */
   addMember(member: Member): Promise<any> {
-    return this.database.ref(Endpoints.MEMBERS + member.roomId + "/" + member.uid).set(member);
+    // TODO: add member
+    // return this.database.ref(Endpoints.MEMBERS + member.roomId + "/" + member.uid).set(member);
+    return null;
   }
 
   /**

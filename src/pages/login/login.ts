@@ -47,11 +47,12 @@ export class LoginPage {
 				user.uid = value.uid;
 				// remove password, for not storing without encrypting
 				user.password = '';
-				this.userProvider.saveUser(user).then(() => {
-					this.navCtrl.push(ChatPage, {
-						user: user
-					});
-				});
+				// TODO: Save user and go to chat page
+				// this.userProvider.saveUser(user).then(() => {
+				// 	this.navCtrl.push(ChatPage, {
+				// 		user: user
+				// 	});
+				// });
 			})
 			.catch(function (error) {
 				console.log("Signup error", error);
@@ -67,10 +68,11 @@ export class LoginPage {
 		let user: User = new User(username, password);
 		this.loginProvider.login(user)
 			.then(value => {
-			  user.uid = value.uid;
-				this.navCtrl.push(ChatPage, {
-          user: user
-				});
+			  // TODO: Do login and go to chat page
+			//   user.uid = value.uid;
+			// 	this.navCtrl.push(ChatPage, {
+          // user: user
+			// 	});
 			}).catch(function (error) {
 				console.log("Login error", error);
 			});
