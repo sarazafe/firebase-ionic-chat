@@ -17,7 +17,7 @@
     <div class="chat-content">
       <div class="chat-bubble" *ngFor="let message of messages;" [ngClass]="message.position">
         <div class="message-container" [ngClass]="message.position">
-          <div class="sender">{{message.sender}}</div>
+          <div class="sender" [ngStyle]="{'color':getMemberFontColor(message)}">{{message.sender}}</div>
           <div class="message">{{message.message}}</div>
         </div>
       </div>
