@@ -14,6 +14,7 @@ import { ChatPageModule } from '../pages/chat/chat.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MemberProvider } from '../providers/member/member';
 import { MessageProvider } from '../providers/message/message';
+import {MembersModalPageModule} from "../pages/members-modal/members-modal.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MessageProvider } from '../providers/message/message';
   imports: [
     BrowserModule,
     ChatPageModule,
+    MembersModalPageModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],

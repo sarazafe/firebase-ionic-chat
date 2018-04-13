@@ -23,6 +23,10 @@ page-chat {
 
       .chat-logo {
         margin: auto 5px;
+        text-align: center;
+        img{
+          max-width: 80%;
+        }
       }
 
       .members-container {

@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
 import {RoomProvider} from '../../providers/room/room';
 import {MemberProvider} from '../../providers/member/member';
 import {Member} from '../../model/member';
@@ -8,6 +8,7 @@ import {User} from "../../model/user";
 import {Message} from "../../model/message";
 import {MessageProvider} from "../../providers/message/message";
 import {Content} from 'ionic-angular';
+import {MembersModalPage} from "../members-modal/members-modal";
 
 /**
  * Chat page
@@ -33,7 +34,8 @@ export class ChatPage {
               public navParams: NavParams,
               private roomProvider: RoomProvider,
               private memberProvider: MemberProvider,
-              private messageProvider: MessageProvider) {
+              private messageProvider: MessageProvider,
+              private modalCtrl: ModalController) {
     this.user = this.navParams.get('user');
     this.members = [];
     this.message = '';
@@ -107,6 +109,13 @@ export class ChatPage {
       }).catch(function (error) {
       console.log("Error saving message", error);
     });
+  }
+
+  /**
+   * It opens a dialog with all members
+   */
+  showMembers(){
+    this.modalCtrl.create(MembersModalPage, {'members': this.members}).present();
   }
 
   /**
