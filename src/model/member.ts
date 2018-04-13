@@ -7,6 +7,7 @@ export class Member {
   uid: string;
   email: string;
   roomId: string;
+  color: string;
 
   /**
    * It initializes the object from json

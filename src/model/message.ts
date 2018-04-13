@@ -7,6 +7,7 @@ export class Message {
     message: string;
     time: Date;
     position: string;
+    color: string;
     constructor(messageJson: any){
       Object.assign(this, messageJson);
     }

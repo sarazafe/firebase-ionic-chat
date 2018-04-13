@@ -90,6 +90,15 @@ export class ChatPage {
   }
 
   /**
+   * It gets the color of the member
+   * @param {Message} message
+   * @returns {string}
+   */
+  getMemberFontColor(message: Message){
+    return message.color;
+  }
+
+  /**
    * It sends the message
    */
   sendMessage() {
@@ -98,7 +107,8 @@ export class ChatPage {
       sender: this.member.email,
       roomId: this.member.roomId,
       message: this.message,
-      time: new Date()
+      time: new Date(),
+      color: this.member.color
     });
 
     // Save message
@@ -128,7 +138,8 @@ export class ChatPage {
         this.member = new Member({
           uid: this.user.uid,
           email: this.user.email,
-          roomId: Chat.DEFAULT_ROOM_ID
+          roomId: Chat.DEFAULT_ROOM_ID,
+          color: ('#' + Math.floor(Math.random() * 16777215).toString(16))
         });
         this.memberProvider.addMember(this.member)
           .then().catch(function (error) {
